@@ -8,6 +8,7 @@ end
 
 dataIntensity = [ones(size(dataIntensity)) repmat(dataIntensity,1,2)];
 %}
+    
 load dataIntensity.mat;
 load dataLable.mat;
 maxIter = 100;
