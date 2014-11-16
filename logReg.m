@@ -5,8 +5,8 @@ for i=1:TRAIN_SAMPLE
     dataLable = [dataLable;data_train(i).region(:)];
 end
 
-featureIntensity = [ones(size(dataIntensity)) repmat(dataIntensity,1,2)];
-featureIntensity(:,3) = featureIntensity(:,3).^2;
+featureIntensity = repmat(dataIntensity,1,2);
+featureIntensity(:,2) = featureIntensity(:,2).^2;
 
-B = mnrfit(featureIntensity,dataLable+1);
+B = mnrfit(featureIntensity(1:100000,:),dataLable(1:100000)+1);
 
