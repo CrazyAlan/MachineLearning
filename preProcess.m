@@ -1,11 +1,12 @@
-%load data_sample.mat;
-%data_cell = struct2cell(data_train);
+load data_sample.mat;
 dataIntensity = [];
+dataRGB = [];
 for i = 1:677
- %   data_cell{1,1,i} = im2double(data_cell{1,1,i});
-  %  data_cell{2,1,i} = im2double(data_cell{2,1,i});
+    data_train(i).intensity = im2double(data_train(i).intensity);
+    data_train(i).rgbimage = im2double(data_train(i).rgbimage);
     %meanNormalize
-    dataIntensity = [dataIntensity;data_cell{2,1,i}(:)];
+    dataIntensity = [dataIntensity;data_train(i).intensity(:)];
+    
 end
 
 %meanNormalize
@@ -13,6 +14,5 @@ mnIntensity = mean(dataIntensity);
 stdIntensity = std(dataIntensity);
 
 for i = 1:677
-    data_cell{2,1,idata_cell{2,1,i}} = (data_cell{2,1,i} - mnIntensity)/stdIntensity;
+    data_train(i).intensity = (data_train(i).intensity - mnIntensity)/stdIntensity;
 end
-
