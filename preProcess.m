@@ -18,3 +18,4 @@ stdRGB = std(dataRGB);
 for i = 1:677
     data_train(i).intensity = (data_train(i).intensity - mnIntensity)/stdIntensity;
 end
+
