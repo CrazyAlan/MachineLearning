@@ -12,10 +12,12 @@ dataIntensity = [ones(size(dataIntensity)) repmat(dataIntensity,1,2)];
 load dataIntensity.mat;
 load dataLable.mat;
 dataIntensity(:,3) = dataIntensity(:,3).^2;
+dataIntensity = dataIntensity(1:76800,:);
+dataLable = dataLable(1:76800,:);
 maxIter = 100;
 tol = 0.01;
-eta = 0.0000005;
-w = [1.3 .1 .1]';
+eta = 0.005;
+w = [0 0 0]';
 e_all = [];
 for iter = 1:maxIter
    % for i=1:size(dataIntensity,1)
