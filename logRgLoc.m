@@ -1,31 +1,32 @@
 load dataNorm.mat;
-clear dataRGB;
+clear dataLoc;
 clear t;
 
-TRAIN_SAMPLE = 677;
+TRAIN_SAMPLE = 100;
 
-dataRGB = [];
+dataLoc = [];
 t = [];
 
 %Convert Struct data to Matrix
 
 for i = 1:TRAIN_SAMPLE
-    dataRGB = [dataRGB; reshape(data_train(i).rgbimage,numel(data_train(i).rgbimage(:,:,1)),3)];
+    %row col
+    dataLoc = [dataLoc; data_train(i).loc];
     t = [t;data_train(i).region(:)];
 end
 
 %Feature Vector (1,r,g,b,r2,g2,b2,r*g,r*b,g*b)
 
-%dataRGB = repmat(dataRGB,1,3); % don't need bias 1
+%dataLoc = repmat(dataLoc,1,3); % don't need bias 1
 
-dataRGB = [dataRGB dataRGB(:,1).^2 dataRGB(:,2).^2 dataRGB(:,3).^2 dataRGB(:,1).*dataRGB(:,2) dataRGB(:,1).*dataRGB(:,3) dataRGB(:,2).*dataRGB(:,3)];
+dataLoc = [dataLoc dataLoc(:,1).^2 dataLoc(:,2).^2 dataLoc(:,1).*dataLoc(:,2)];
 
 %Logistic Regression Training 
 %B is the coefficient 
 
-B = mnrfit(dataRGB,t+1); %t+1, positive lable
+eB = mnrfit(dataLoc,t+1); %t+1, positive lable
 
-result = mnrval(B,dataRGB);
+result = mnrval(B,dataLoc);
 
 lable = result(:,2)>0.5;    % 1 is foreground
 

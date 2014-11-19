@@ -1,16 +1,24 @@
-A = data_train(1).intensity;
-A = im2double(A);
-D = [A(:) A(:).^2];
+clear all;
+load dataNorm.mat;
+clear dataLoc;
+clear t;
 
-t = data_train(1).region;
-t = t(:);
 
-%w = [-3.08309457699786;-1.16685472887340;0.499204155734427];
+TRAIN_SAMPLE = size(data_train,2);
 
-B = mnrfit(D,t+1);
-C = mnrval(B,D);
-E = C>0.5;
-F = reshape(E(:,1),240,320);
-imshow(F);
- %197 bul
+dataLoc = [];
+t = [];
+
+%Convert Struct data to Matrix
+
+for i = 1:TRAIN_SAMPLE
+    %row col
+    [row,col] = find(data_train(i).region == data_train(i).region);
+    row = row./size(data_train(i).region,1);
+    col = col./size(data_train(i).region,2);
+   % dataLoc = [dataLoc; row col];
+    data_train(i).loc = [row col];
+   % t = [t;data_train(i).region(:)];
+end
+
  
