@@ -2,7 +2,7 @@ load dataNorm.mat;
 clear dataTxt;
 clear t;
 
-TRAIN_SAMPLE = 10;
+TRAIN_SAMPLE = 100;
 
 dataTxt = [];
 t = [];

@@ -2,7 +2,7 @@ load dataNorm.mat;
 clear dataRGB;
 clear t;
 
-TRAIN_SAMPLE = 677;
+TRAIN_SAMPLE = 100;
 
 dataRGB = [];
 t = [];

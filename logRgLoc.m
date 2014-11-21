@@ -24,7 +24,7 @@ dataLoc = [dataLoc dataLoc(:,1).^2 dataLoc(:,2).^2 dataLoc(:,1).*dataLoc(:,2)];
 %Logistic Regression Training 
 %B is the coefficient 
 
-eB = mnrfit(dataLoc,t+1); %t+1, positive lable
+B = mnrfit(dataLoc,t+1); %t+1, positive lable
 
 result = mnrval(B,dataLoc);
 
